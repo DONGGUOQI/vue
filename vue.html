@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+    <div id="box" v-cloak>
+        <div>{{mane}}</div>
+        <div>{{get}}</div>
+        <div v-html="get"></div>
+        <div v-text="mane"></div>
+        <div v-once>{{info}}</div>
+        <input type="text" v-model="mane">
+        <div>
+            <button @click="handhe(1, $event)" style="width: 100px; height: 100px;">点击</button>
+            <button @keyup.q="info()">点击</button>
+        </div>
+    
+    </div>
+    
+   
+    <script src="./vue.js"></script>
+    <script>
+        Vue.config.keyCodes.q = 81
+     var vm = new Vue({
+         el:'#box',
+         data: {
+             mane: '小明',
+             get: 1,
+             info: 'haHo'
+         },
+         methods: {
+             handhe (e, event) {
+                 this.get += e
+                 console.log(event);
+                 
+             },
+             info () {
+                 console.log(1);
+                 
+             }
+             
+         },
+     })
+    
+
+    </script>
+</body>
+</html>
