@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <div id="app">
+    <input type="text" v-model="num1">
+    <input type="text" v-model="num2">
+    <button @click="handhe()">点击</button>
+    结果：<span>{{result}}</span>
+   </div>
+   <script src="./vue.js"></script>
+  <script>
+
+    // 1。加载vue文件
+    // 2.给inptut添加v-model指令
+    // 创建vue实例对象
+    // 挂载父盒子
+    // 在data中定义数值
+    // 在methods中创建方法
+    // 给button添加点击事件,调用方法
+    // 插值表达式渲染页面
+
+       var vm = new Vue({
+        el:'#app',
+        data: {
+           num1:'',
+           num2:'',
+           result:''
+        },
+        methods: {
+            handhe () {
+                this.result = +this.num1 + +this.num2
+            }
+        },
+    })
+  </script>
+</body>
+</html>

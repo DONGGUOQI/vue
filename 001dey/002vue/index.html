@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+  .bgj {
+      background-color: fuchsia;
+  }
+  .add {
+      width: 100px;
+      height: 100px;
+  }
+
+</style>
+<body>
+    <div id="app">
+        <!-- <input type="text" :value="val" @input="handle">
+        <input type="text" :value="val" @input="val=$event.target.value">
+        <input type="text" v-model="val">
+     <p>{{val}}</p> -->
+
+     <div :class="{bgj:is, add:is}">对象样式切换</div>
+
+        <div :class="objClass">对象样式切换</div>
+        <div :class="arrclass">数组样式切换</div>
+        <div :style="obj">对象样式切换</div>
+        <div :style="arr">数组样式切换</div>
+
+      <button @click="handle"></button>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+
+      var vm = new Vue({
+          el:'#app',
+          data: {
+            objClass:{
+                bgj: true,
+                 add: true
+               },
+             arrclass:['bgj', 'add'],
+            //   val: 'tom',
+               is: true,
+               obj: {
+                   width: '100px',
+                   height: '100px',
+                     border: '1px solid skyblue',                   
+               },
+               arr: [ width= '100px',
+                    height= '100px',
+                    border= '1px solid skyblue'     
+               ]
+                  
+               
+               
+          },
+     methods: {
+        handle() {
+            // this.val=e.val
+            this.is=is=false
+        }
+
+     },
+      })
+
+
+    </script>
+</body>
+</html>

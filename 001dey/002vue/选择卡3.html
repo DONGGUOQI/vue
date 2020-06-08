@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style type="text/css">
+    .tab ul {
+      overflow: hidden;
+      padding: 0;
+      margin: 0;
+    }
+
+    .tab ul li {
+      box-sizing: border-box;
+      padding: 0;
+      float: left;
+      width: 100px;
+      height: 45px;
+      line-height: 45px;
+      list-style: none;
+      text-align: center;
+      border-top: 1px solid blue;
+      border-right: 1px solid blue;
+    }
+
+    .tab ul li:first-child {
+      border-left: 1px solid blue;
+    }
+
+    .tab ul li.active {
+      background-color: orange;
+    }
+
+    .tab div {
+      width: 500px;
+      height: 300px;
+      display: none;
+      text-align: center;
+      font-size: 30px;
+      line-height: 300px;
+      border: 1px solid blue;
+      border-top: 0px;
+    }
+
+    .tab div.current {
+      display: block;
+    }
+  </style>
+<body>
+ <div id="app">
+     <div class="tab">
+    <ul>
+        <li v-for="(itme, index) in newarr" :class="dangindex===index ? 'active' : ''" @click="info(index)">{{itme.name}}</li>
+    </ul>
+    <div v-for="(itme, index) in newarr" :class="dangindex===index ? 'current': ''">
+        <img :src="itme.img">
+    </div>
+     </div>
+ </div>
+     <script src="../vue.js"></script>
+     <script>
+        //   总结：
+            // 首先：创建页面结构和css样式
+            // 创建vue实例化对象，挂载元素
+            // 构建数组，遍历数组用插值表达式渲染页面
+            // 用v-bind绑定css属性通过三元运算符判断，创建点击事件完成背景颜色的改变
+            //   声明info方法给dangindex附值和点击当前的index全等达到img的切换
+
+
+         var vm = new Vue({
+             el:'#app',
+             data:{
+                 dangindex:0,
+            newarr:[{
+               name:"苹果",
+               img:'./imgs/apple.png'
+            },{
+               name:"橘子",
+               img:'./imgs/lemon.png'
+            },{
+               name:"柠檬",
+               img:'./imgs/orange.png'
+            },]
+             },
+             methods:{
+                 info:function(index){
+                  this.dangindex=index
+                 }
+             }
+         })
+     </script>
+</body>
+</html>

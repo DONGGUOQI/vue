@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <div id="app" style="margin:0 auto; width:500px; height:500px;">
+    <input type="text" v-model="num1">
+    +<input type="text" v-model="num2">
+    <button @click="count">=</button>
+    <span>{{reust}}</span>
+   </div>
+    <script src="./vue.js"></script>
+    <script>
+       var vm = new Vue({
+           el:'#app',
+           data: {
+               num1: '',
+               num2: '',
+               reust: ''
+           },
+           methods: {
+            count () {
+              this.reust = +this.num1 + +this.num2
+            }  
+           },
+       })
+    </script>
+</body>
+</html>
