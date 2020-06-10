@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <span>用户名：</span>
+        <span><input type="text" v-model.lazy="name"></span>
+        <span>{{tip}}</span>
+    </div>
+    <script src="../vue.js"></script>
+
+    <script>
+    //   1.使用v-model。将值同步到data中
+     var vm = new Vue({
+      el:'#app',
+      data:{
+          name:'',
+          tip:''
+      },
+     
+      methods:{
+        nanevel: function(name) {
+            setTimeout(()=>{
+                if(name == 'admin') {
+           this.tip='用户名已经存在，请更换一个'
+           console.log(1);
+           
+                }else{
+                    this.tip='用户名可以使用'
+                }
+            },1000) 
+        }
+      },
+       watch: {
+        name: function(val) {
+            
+              this.tip = '正在验证中...'
+              this.nanevel(val)
+            
+        }  
+      }
+
+  })
+
+    </script>
+</body>
+</html>

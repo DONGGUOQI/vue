@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="app">
+        <p>{{name}}</p>
+        <p>{{name | lower('yyyy-MM-dd')}}</p>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+        Vue.filter('lower', function (val,paran1) {
+        // return val.charAt(0).toLowerCase()+val.slice(1) 
+       function dateFormat(date, format) {
+           
+       }
+
+
+        })
+        var vm =new Vue({
+            el:'#app',
+            data: {
+              name: 'Tom'  
+            }
+            // filters: {
+            //     lower:function(val) {
+            //         return val.charAt(0).toLowerCase()+val.slice(1)
+            //     }
+            // }
+        })
+    </script>
+</body>
+</html>

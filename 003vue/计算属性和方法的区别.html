@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-bgc="{color: 'red'}" />
+        <input type="text" v-focus />
+        <div>{{info}}</div>
+        <div>{{reverse}}</div>
+    <div>{{num}}</div>
+    <div>{{age}}</div>
+    <button ></button>
+    </div>
+     <!-- 在使用自定义指令的时候传递相关的参数{color: 'red'} -->
+    <script src="../vue.js"></script>
+
+    <script>
+    //    Vue.directive('bgc',{
+    //           // inserted被绑定元素插入父节点时调用 (仅保证父节点存在，但不一定已被插入文档中)。 
+    //     // el:使用了自定义指令的元素
+    //     // params:指的是自定义的参数
+    //        inserted: function (el, params) {
+         
+    //       el.style.backgroundColor = params.value.color
+    //        console.log(params);
+           
+    //        }
+    //    })
+     var vm = new Vue({
+      el:'#app',
+      data:{
+          info:'tom',
+          num: 1,
+          age: 2
+      },
+      directives:{
+          bgc: {
+            inserted: function (el, params) {
+         
+         el.style.backgroundColor = params.value.color
+        //   console.log(params);
+          
+          }
+          },
+          focus: {
+            inserted:function (el) {
+              el.focus()
+            }
+              
+          }
+      },
+      methods: {
+          handle: function () {
+             return this.info.split('').reverse().join('')
+
+          }
+      },
+    //   计算属性和方法的区别是，计算属性会缓存，
+    // 计算属性是基本依赖data数据的
+      computed: {
+        //   注意：在计算属性内部，必须要有return
+        // 注意：计算属性里面的数据依赖于data中的数据发生改变，计算属性返回值也会
+          reverse: function() {
+             return this.info.split('').reverse().join('')
+         }
+      },
+      watch: {
+          num: function(newVal) {
+              console.log(newVal);
+              
+          },
+          age: function(newAge) {
+        console.log(newAge);
+        
+          }
+       },
+
+  })
+
+    </script>
+</body>
+</html>

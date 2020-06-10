@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="app">
+        <input type="text" v-model.lazy="info">
+        <input type="text" v-model.number="numval">
+        <button id="button"></button>
+        <div>{{numval}}</div>
+    </div>
+    <script src="../vue.js"> </script>
+    <script>
+      var vm = new Vue({
+          el:'#app',
+          data:{
+              info:'',
+              numval:''
+          },
+          methods: {
+            button:function () {
+                console.log(123);
+                
+            } 
+          },
+      })
+
+
+    </script>
+</body>
+</html>
