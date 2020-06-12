@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <div id="app">
+    <hello-world></hello-world>
+    <hello-world></hello-world>
+    <component-a></component-a>
+   </div>
+
+  <script src="../vue.js"></script>
+  <script>
+   Vue.component('hello-world',{
+        data: function() {
+          return {
+              name: 'tom',
+              age:3
+          }  
+        },
+        template:`
+        <div>
+        <p>{{name}}</p>
+        <button @click="add">点击</button>
+        <p>{{age}}</p>
+        <hr>
+        </div>
+        `,
+        methods: {
+          add() {
+              this.age++
+              }
+        },
+    })
+    // 局部组件
+  var componenta = {
+       data: function () {
+      return {
+        name:'苹果'
+      }
+    },
+    template:`<div>{{name}}</div>`
+  }
+
+
+
+var vm = new Vue({
+    el:'#app',
+    data:{
+        
+    },
+  components:{
+    'component-a':componenta
+  }
+})
+  </script>
+</body>
+</html>
