@@ -211,6 +211,7 @@
                
         //     }
         //   }) 
+        // 加接口编辑图书
          var {data:res} = await axios.put('books/'+this.id,{name:this.name})
     // console.log(res);
     
@@ -229,6 +230,7 @@
         //    this.books.push(book)
         //    this.id = ''
         //    this.name = ''
+        //  加接口添加图书
         const {data:res} = await axios.post('books',{name:this.name})
             if(res.status===200) {
               this.getData()
@@ -255,6 +257,7 @@
           //  this.id = book[0].id
           //  this.name = book[0].name
           //  console.log(book);
+          // 修改图书
           var {data:res} = await axios('books/'+id)
           //  console.log(res);
           this.flag = true;
@@ -268,7 +271,7 @@
             
            
         },
-           // 删除图书
+           // 加接口删除图书
           deletebook:async function(id) {
             //  this.books = this.books.filter(function(item) {
             //    return item.id !=id

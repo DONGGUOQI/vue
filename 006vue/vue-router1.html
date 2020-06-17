@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+ <script src="../vue.js"></script>
+ <script src="../vue-router.js"></script>
+
+<body>
+      <!--1. 路由组件 -->
+    <div id="app">
+        <router-link to="/login">login</router-link>
+        <router-link to="/index">index</router-link>
+        <!-- 2.占位符 -->
+        <router-view></router-view>
+    </div>
+     <script>
+        // 3.定义（路由）组件
+         var login = {
+             template:`
+             <div>
+             <h1>登录</h1>
+             </div>
+             `
+         }
+         var index = {
+             template:`
+             <div>
+             <h1>注册</h1>
+             </div>
+             `
+         }
+        //   4. 创建路由实例对象
+         const router = new VueRouter({
+           routes:[
+               {path:'/login',component:login},
+               {path:'/index',component:index}
+           ]  
+         })
+        //  创建vue实例对象
+     var vm = new Vue({
+         el:'#app',
+         data:{
+
+         },
+        // 5. 挂载路由根实例
+         router
+     })
+ </script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="../vue.js"></script>
+    <script src="../vue-router.js"></script>
+    <div id="app">
+        <router-link to="/login/1">列表1</router-link>
+        <router-link to="/login/2">列表2</router-link>
+        <router-link to="/login/3">列表3</router-link>
+        <router-link :to="{name:'login', params:{ id:4 } }">列表4</router-link>
+        <router-link to="/index/1">index1</router-link>
+       
+          <router-view></router-view>
+    </div>
+    <script>
+        //   定义路由组件
+        var login = {
+            template:`
+            <div>
+            <h1>登录-{{$route.params.id}}</h1>
+            <button @click="godata">
+            跳转
+            </button>
+            <button @click="gores">
+            跳转
+            </button>
+            </div>
+            `,
+            methods: {
+                godata(){
+                    this.$router.push('/index/4')
+                },
+                gores() {
+                    this.$router.go(-1)
+                }
+            },
+        }
+        var index = {
+            template:`
+            <div>
+            <h1>注册-{{$route.params.id}}</h1>
+
+             <router-link to="/index/add">add</router-link>
+             <router-link to="/index/app1">app1</router-link>
+             <router-view></router-view>
+            </div>
+            `
+        }
+        var add = {
+            template:`
+            <div><h5>苹果11</h5></div>
+            `
+        } 
+        var app1 = {
+            template:`
+            <div><h5>苹果11prc</h5></div>
+            `
+        }
+        const router = new VueRouter({
+           routes: [
+               {path:'/',redirect:'/login'},
+               {path:'/login/:id',component:login , name:'login'},
+               {path:'/index/:id',
+               component:index,
+               children:[
+                   {path:'add',component:add},
+                   {path:'app1',component:app1},
+               ]
+
+
+
+               }
+
+           ]  
+       })
+     var vm = new Vue({
+         el:'#app',
+         data:{
+
+         },
+         router
+     })
+    </script>
+</body>
+</html>

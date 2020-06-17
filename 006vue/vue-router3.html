@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="../vue.js"></script>
+<script src="../vue-router.js"></script>
+
+<body>
+    <div id="app">
+           <!-- 路由标签 -->
+           <router-link :to="{name:'login'}">登录</router-link>
+           <router-link :to="{name:'index'}">注册</router-link>
+           <!-- 路由占位符 -->
+           <router-view></router-view>
+    </div>
+    <script>
+        //    路由组件
+        var login ={
+            template:`
+            <div>
+            <h1>登陆成功</h1>
+            <button @click="data">登录</button>
+             <router-link to="/login/log">小登录</router-link>
+             <router-view></router-view> 
+            </div>
+            `,
+            methods: {
+                data() {
+                    this.$router.push('/index')
+                }
+            },
+        }
+         
+        var index = {
+         template:`
+         <div>
+          <h1>注册成功</h1>
+          <button @click="date">注册</button>
+         </div>
+         `,
+         methods: {
+             date () {
+                 this.$router.go(-1)
+             }
+         },
+
+        }
+        var log = {
+             template:`
+             <div>
+              <h2>登陆成功111</h2>
+             </div>
+             `
+         }
+        //   创建路由实例对象
+          const router = new VueRouter({
+               routes:[
+                //  路由规则     
+                   { path:'/',redirect:'/index'},
+                   { path:'/login', component:login, name:'login',
+                   children:[
+                        {path:'log', component:log }
+                    ]
+                    },
+                   { path:'/index',component:index,name:'index' }
+               ]
+           })
+        var vm = new Vue({
+            el:'#app',
+            data:{ 
+
+            },
+            // 挂载路由
+            router
+        })
+    </script>
+</body>
+</html>
