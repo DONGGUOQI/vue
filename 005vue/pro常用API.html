@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 创建一个getData方法
+    function getData (url) {
+        //  创建实例 promise 对象
+        return new Promise(function(resolve, reject) {
+            var xhr = new XMLHttpRequest()
+            xhr.onreadystatechange = function() {
+                if(xhr.readyState != 4)return
+                if(xhr.readyState ==4 && xhr.status===200) {
+                    resolve(xhr.responseText)
+                }else{
+                    reject('服务器错误')
+                }
+                
+            }
+            xhr.open('get',url)
+            xhr.send(null)
+        })
+    }
+
+getData('http://localhost:3000/data')
+.then(function(data) {
+    return getData('http://localhost:3000/data1')
+}).then(function() {
+    return new Promise(function(resolve, reject) {
+        setTimeout(() => {
+            resolve(123)
+        }, 1000);
+    })
+}).then(function(data) {
+ return 'hello'
+}).then(function(data) { 
+    console.log(data);
+    
+})
+    </script>
+</body>
+</html>

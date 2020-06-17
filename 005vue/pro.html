@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var p = new Promise(function(resolve, reject) {
+            setTimeout(function(){
+               var flag =true
+               if (flag) {
+                resolve('hello')
+               }else{
+                reject('出现错误')  
+               }
+                
+ 
+            },1000)
+        })
+        p.then(function(data){
+            console.log(data);
+            
+        },function(info) {
+            console.log(info);
+            
+        })
+    </script>
+</body>
+</html>

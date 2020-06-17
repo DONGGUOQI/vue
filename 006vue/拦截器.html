@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="../axios.js"></script>
+    <script>
+    //   axios.interceptors.request.use((config)=>{
+    //       console.log(config);
+    //       return config
+    //   },(error)=>{
+    //    config.headers.mytokey = 'acvgadas'
+    //  return Promise.reject(error)
+    //   })
+      
+//     axios.interceptors.response.use(function (response) {
+//     // 对响应数据做点什么
+// //    console.log(response);
+//     data = response.data
+//     return data;
+//   }, function (error) {
+//     // 对响应错误做点什么
+//     return Promise.reject(error);
+//   });
+//   axios.get('http:/localhost:3000/axios?id=1').then((data)=>{
+//          console.log(data);   
+//     })
+
+   axios.defaults.baseURL = 'http://localhost:3000'
+   async function getData() {
+       const { data:res } = await axios.get('async1')
+       const { data:result } = await axios.get(`async2${{res}}`)
+   }
+
+    // axios.get('http:/localhost:3000/axios?id=1').then((data)=>{
+    //      console.log(data);   
+    // })
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="../axios.js"></script>
+  <script>
+    axios.get('http:/localhost:3000/axios?id=1').then((data)=>{
+         console.log(data.data);
+       
+    })
+    axios.get('http:/localhost:3000/axios?id=4').then((data)=>{
+            const { data: res } = data
+            console.log(res);
+            
+        })
+    axios.post('http://localhost:3000/axios',{
+        uname:'tom',
+        pwd:123456
+    }).then((data)=>{
+        const { data:res } = data
+        console.log(res);
+        
+    })
+    axios.put('http://localhost:3000/axios',{
+        unema:'jeey',
+        pwd:'654312'
+    }).then((data)=>{
+        const { data:res } = data
+        console.log(res);
+         
+    })
+  </script>
+</body>
+</html>

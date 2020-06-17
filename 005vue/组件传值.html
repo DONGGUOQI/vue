@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <hollo-world :myage='age' v-on:fang='info($event)'></hollo-world>
+     
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+
+
+
+    Vue.component('hollo-world',{
+        props:['myage','myArr'],
+      data:function() {
+          return {
+             name:'tom' 
+          }
+      },
+      template:`
+      <div>
+        <p>{{myage}}</p>
+        <button @click="$emit('fang',10)">
+            点击
+        </button>
+      </div>
+      `
+    })
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            age: 3,
+            unm:null
+        },
+        methods: {
+            info: (val)=>{
+               this.unm = val
+               console.log(unm);
+            }
+            // info: (val)=>{
+            // this.unm = val
+            // console.log(unm)
+            // }
+        },
+    })
+    </script>
+</body>
+</html>

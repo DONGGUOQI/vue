@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        fetch('http:/127.0.0.1:3000/books?1',{
+            method:'get'
+        }).then((data) => {
+            return data.text()
+        }).then((data)=>{
+    console.log(data);
+        }),
+          fetch('http:/127.0.0.1:3000/books',{
+              method:'post',
+              body:'uname=tom&pwd=123',
+              headers:{
+                  'Content-Type':'application/x-www-form-urlencoded'
+              }
+          }).then((data) =>{
+            return data.text()
+          }).then((data)=> {
+              console.log(data);  
+          })
+          fetch('http:/127.0.0.1:3000?boods/1',{
+              method:'put',
+              body:JSON.stringify({
+                  uname:'jerry',
+
+              }),
+              headers:{
+                  'Content-Type':'application/x-www-form-urlencoded'
+              }
+          }).then(()=>{
+              return data.text()
+          })
+          fetch('http:/localhost:3000/josn').then((data)=>{
+              return data.json()
+          }).then((data)=> {
+              console.log(data);
+              
+          })
+    </script>
+</body>
+</html>

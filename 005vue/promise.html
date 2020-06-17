@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>promise解决异步问题</title>
+</head>
+<body>
+<script src="../vue.js"></script>
+<script>
+//    var p = new Promise((resolve, reject)=>{
+//         setTimeout(()=>{
+//         var flag = true
+//         if(flag) {
+//            resolve('正确');
+            
+//         }else{
+//             reject('错误');
+            
+//         }
+//         })
+
+//    })
+//    p.then((data)=>{
+//        console.log(data);
+       
+//    },(res)=>{
+//    console.log(res);
+   
+
+//    })
+function queryData(url) {
+    return new Promise(function(resolve, reject) {
+   var xhr =new XMLHttpRequest()
+   xhr.onreadystatechange = function() {
+       if(xhr.readyState !=4) return
+       if(xhr.readyState==4 && xhr.status==200){
+           resolve(xhr.responseText)
+       }else{
+           reject('服务器错误')
+       }
+   }
+   xhr.open('get',url)
+   xhr.send(null)
+    })
+}
+queryData('http://localhost:3000/data')
+.then(function(data) {
+ return queryData('http://localhost:3000/data1')
+})
+.then(function(data) {
+    return new Promise(function(resolve,reject) {
+        setTimeout(function() {
+            resolve(123)
+        },1000)
+    })
+})
+.then(function(data) {
+    return 'hello'
+})
+.then(function(data){
+    console.log(data);
+    
+})
+</script>
+</body>
+</html>

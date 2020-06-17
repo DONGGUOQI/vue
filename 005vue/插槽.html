@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+.active {
+     background-color:black;
+    }
+</style>
+<body>
+    <div id="app">
+        <hollo-world :list="list">
+            <template slot-scope="footer">
+              <span :class="footer.hero.id ===1 ? 'active' : ''">{{footer.hero.name}}</span>
+              <!-- <span v-else>{{scope.info.name}}</span> -->
+            </template>
+            </hollo-world>
+         
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+
+
+
+    Vue.component('hollo-world',{
+        props:['list'],
+     
+      template:`
+      <div>
+           <li v-for="item in list" :key="item.id">
+           <slot :hero="item"></slot>
+           </li>
+      </div>
+      `
+    })
+    var vm = new Vue({
+        el:'#app',
+        data:{
+         list:[{
+             id:1,
+             name:'苹果'
+         },{
+             id:2,
+             name:'荔枝'
+         },{
+             id:3,
+             name:'香蕉'
+         }]            
+        },
+        methods: {
+           
+        },
+    })
+    </script>
+</body>
+</html>
