@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+
+    }
+
+    body,
+    .app {
+      width: 100%;
+      height: 100%;
+      background-color: #545c64;
+    }
+
+    .bug {
+      width: 100%;
+      height: 847px;
+    }
+
+    .to {
+      font-size: 24px;
+      line-height: 50px;
+      height: 50px;
+      color: #ffffff;
+      text-align: center;
+    }
+
+    ul {
+      float: flex;
+      float: left;
+    }
+
+    a {
+      color: #fff;
+      text-decoration: none
+    }
+
+    .left {
+      height: 46px;
+      width: 384px;
+      background-color: #a0a0a0;
+      margin: 0px;
+      border-bottom: 1px #ffffff solid;
+      line-height: 46px;
+      text-align: center;
+      color: #ffffff;
+    }
+
+    .right {
+      width: 1519px;
+      float: right;
+      /* flex: 1; */
+      height: 100%;
+      background-color: #ffffff;
+    }
+
+    h3 {
+      height: 25px;
+      font-size: 18px;
+      text-align: center;
+      margin: 18px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: center;
+    }
+
+    td,
+    th {
+      border: 1px solid #eee;
+      line-height: 35px;
+      font-size: 12px;
+    }
+
+    th {
+      background-color: #ddd;
+    }
+  </style>
+</head>
+<script src="../vue.js"></script>
+<script src="../vue-router.js"></script>
+
+<body>
+  <div id="app">
+
+    <!-- 路由占位符 -->
+    <div class="right">
+      <router-view></router-view>
+
+    </div>
+
+  </div>
+
+  </div>
+
+
+  <script>
+    // 路由组件
+    var App = {
+      template: `
+          <div>
+            <div class="to">传智后台管理系统</div>
+          <div class="bug">
+    <ul>
+     <li class="left"><router-link to="/users">用户管理</router-link></li>
+     <li class="left"><router-link to="/rights">权限管理</router-link></li>
+     <li class="left"><router-link to="/goods">商品管理</router-link></li>
+     <li class="left"><router-link to="/orders">订单管理</router-link></li>
+     <li class="left"><router-link to="/settings">系统设置</router-link></li>
+    </ul>
+    <router-view></router-view>
+    </div>
+    </div>
+          `
+    }
+    var Users = {
+        data: function () {
+          return {
+            userlist: [{
+                id: 1,
+                name: '张三',
+                age: 10
+              },
+              {
+                id: 2,
+                name: '李四',
+                age: 20
+              },
+              {
+                id: 3,
+                name: '王五',
+                age: 30
+              },
+              {
+                id: 4,
+                name: '赵六',
+                age: 40
+              }
+            ]
+          } 
+        },
+        templata: `
+         <div> 
+          <table>
+        <thead>
+          <tr><th>编号</th><th>姓名</th><th>年龄</th><th>操作</th></tr>
+        </thead>
+        <tbody>
+          <tr v-for="item in userlist" :key="item.id">
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.age}}</td>
+            <td>
+              <a href="javascript:;" @click="goDetail(item.id)" style="color:black;">详情</a>
+            </td>
+          </tr>
+        </tbody>
+      </table></div>
+          `,
+          
+      methods: {
+        goDetail(id) {
+          this.$router.push(`/detail/${id}`)
+        }
+      }
+      }
+      var Detail = {
+      template: `
+        <div>
+          <h3>详情页 -- {{ $route.params.id }}</h3>
+          <button @click="goBack">按钮</button>
+        </div>
+      `,
+      methods: {
+        goBack() {
+          this.$router.go(-1)
+        }
+      }
+    }
+    var Rights = {
+      template: `
+          <h3>权限管理</h3>
+        `
+    }
+        var Goods = {
+          template: `
+          <h3>商品管理</h3>
+        `
+        }
+
+        var Orders = {
+          template: `
+          <h3>订单管理</h3>
+        `
+        }
+
+        var Settings = {
+          template: `
+          <h3>系统设置</h3>
+        `
+        }
+        // 路由实例对象
+        const router = new VueRouter({
+          routes: [
+            //  路由规则
+            {
+              path: '/',
+          component: App,
+          redirect: '/users',
+          children: [{
+                  path: '/users',
+                  component: Users
+                },
+                {
+                  path: '/detail/:id',
+                  component: Detail
+                },
+                {
+                  path: '/rights',
+                  component: Rights
+                },
+                { path: '/goods', component: Goods },
+                {
+                  path: '/orders',
+                  component: Orders
+                },
+                {
+                  path: '/settings',
+                  component: Settings
+                }
+              ]
+
+
+            },
+          ]
+        })
+        var Rights = {
+          template: `
+          <h3>权限管理</h3>
+        `
+        }
+
+
+        const vm = new Vue({
+          el: '#app',
+          data: {
+
+          },
+          //  挂载路由
+          router
+        })
+  </script>
+</body>
+
+</html>
