@@ -4,12 +4,21 @@ import VueRouter from 'vue-router'
 import Login from '../views/Login.vue'
 import '../assets/global.css'
 import Home from '../views/Home.vue'
+import Welcome from '../views/Welcome.vue'
+import users from '../views/Users/users.vue'
 Vue.use(VueRouter)
 const routes = [
   // 路由规则
   { path: '/', redirect: 'login' },
   { path: '/login', component: Login },
-  { path: '/home', component: Home }
+  {
+    path: '/home',
+    component: Home,
+    redirect: '/welcome',
+    children: [{ path: '/welcome', component: Welcome },
+      { path: '/users', component: users }
+    ]
+  }
 
 ]
 //  创建路由实例
@@ -27,3 +36,7 @@ router.beforeEach((to, from, next) => {
   if (!myToken) return next('/login')
   next()
 })
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+}
